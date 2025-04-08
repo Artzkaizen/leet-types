@@ -7,7 +7,8 @@ import { TRPCReactProvider } from "@/trpc/react";
 
 export const metadata: Metadata = {
   title: "TS Playground",
-  description: "A TypeScript playground for experimenting with and learning TypeScript concepts, patterns, and best practices",
+  description:
+    "A TypeScript playground for experimenting with and learning TypeScript concepts, patterns, and best practices",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

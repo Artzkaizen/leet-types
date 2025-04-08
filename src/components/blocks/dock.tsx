@@ -1,12 +1,12 @@
 "use client";
 
 import {
-    DockviewDefaultTab,
-    DockviewReact,
-    themeAbyss,
-    type DockviewReadyEvent,
-    type IDockviewPanelHeaderProps,
-    type IDockviewPanelProps
+  DockviewDefaultTab,
+  DockviewReact,
+  themeAbyss,
+  type DockviewReadyEvent,
+  type IDockviewPanelHeaderProps,
+  type IDockviewPanelProps,
 } from "dockview";
 
 const PanelWrapper = (props: React.PropsWithChildren) => {
@@ -15,11 +15,11 @@ const PanelWrapper = (props: React.PropsWithChildren) => {
 const components = {
   default: (props: IDockviewPanelProps<{ title: string }>) => {
     return (
-        <PanelWrapper>
+      <PanelWrapper>
         <div className="bg-red-100 p-4">
           {props.params.title} {props.api.id}
         </div>
-        </PanelWrapper>
+      </PanelWrapper>
     );
   },
   tab: (props: IDockviewPanelProps<{ title: string }>) => {
@@ -70,22 +70,20 @@ export const SimpleGridview = () => {
       id: "panel_5",
       title: "Console",
       component: "default",
-      position: { referencePanel: "panel_4", },
+      position: { referencePanel: "panel_4" },
     });
     event.api.addPanel({
       id: "panel_6",
       title: "Errors",
       component: "default",
-            position: { referencePanel: "panel_4" },
+      position: { referencePanel: "panel_4" },
     });
   };
-
-
   return (
     <DockviewReact
       components={components}
       defaultTabComponent={headerComponents.default}
-      theme={{...themeAbyss, gap: 8}}
+      theme={{ ...themeAbyss, gap: 8 }}
       onReady={onReady}
     />
   );
@@ -98,7 +96,7 @@ const headerComponents = {
       alert("context menu");
     };
     return (
-         <DockviewDefaultTab hideClose onContextMenu={onContextMenu} {...props} />
+      <DockviewDefaultTab hideClose onContextMenu={onContextMenu} {...props} />
     );
   },
 };

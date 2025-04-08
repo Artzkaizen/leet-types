@@ -1,20 +1,7 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import {
-  Bell,
-  Check,
-  Globe,
-  Home,
-  Keyboard,
-  Link,
-  Lock,
-  Menu,
-  MessageCircle,
-  Paintbrush,
-  Settings,
-  Video,
-} from "lucide-react"
+import { MessageCircle, Settings } from "lucide-react";
+import * as React from "react";
 
 import {
   Breadcrumb,
@@ -23,15 +10,15 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import {
   Sidebar,
   SidebarContent,
@@ -41,7 +28,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 const data = {
   nav: [
@@ -58,19 +45,23 @@ const data = {
     // { name: "Privacy & visibility", icon: Lock },
     { name: "Advanced", icon: Settings },
   ],
-}
+};
 
 export function SettingsDialog() {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-      <Button variant="ghost" className="cursor-pointer hover:bg-transparent" size="icon">
-        <Settings  className="size-6"/>
+        <Button
+          variant="ghost"
+          className="cursor-pointer hover:bg-transparent"
+          size="icon"
+        >
+          <Settings className="size-6" />
         </Button>
       </DialogTrigger>
-      <DialogContent className=" overflow-hidden p-0 md:max-h-[500px] md:max-w-[700px] lg:max-w-[800px]">
+      <DialogContent className="overflow-hidden p-0 md:max-h-[500px] md:max-w-[700px] lg:max-w-[800px]">
         <DialogTitle className="sr-only">Settings</DialogTitle>
         <DialogDescription className="sr-only">
           Customize your settings here.
@@ -127,5 +118,5 @@ export function SettingsDialog() {
         </SidebarProvider>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
