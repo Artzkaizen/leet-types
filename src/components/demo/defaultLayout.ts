@@ -42,6 +42,12 @@ export function defaultConfig(api: DockviewApi) {
     title: "Panel 5",
     position: { referencePanel: panel4 },
   });
+  const panel9 = api.addPanel({
+    id: "panel_9",
+    component: "default",
+    title: "Panel 9",
+    position: { referencePanel: panel4 },
+  });
 
   const panel6 = api.addPanel({
     id: "panel_6",

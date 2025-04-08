@@ -130,4 +130,40 @@
       opacity: 0.5;
     }
   }
+  .dv-groupview {
+    border-radius: 0.25rem;
+    border: none !important;
+  }
+
+  .dv-groupview.dv-active-group {
+    border-radius: 0.25rem;
+    border: var(--border) 1px solid !important;
+  }
+
+  .dv-dockview {
+    --dv-separator-border: transparent !important;
+    background-color: var(--background) !important;
+  }
+  .dv-sash.dv-enabled {
+    position: relative;
+  }
+  .dv-sash .dv-enabled:hover {
+    background-color: brown;
+  }
+
+  .dv-sash.dv-enabled::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 20px;
+    background-color: var(--primary);
+    border-radius: 5px;
+  }
+
+  .dv-split-view-container.dv-vertical .dv-sash.dv-enabled::before {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
 }
