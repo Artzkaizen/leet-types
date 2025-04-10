@@ -5,6 +5,15 @@
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  experimental: {
+    dynamicIO: true,
+  },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
+};
 
 export default config;

@@ -1,9 +1,10 @@
-import { SettingsDialog } from "@/components/settings-dialog";
+"use client";
+import Editor from "@monaco-editor/react";
 
 export default function Page() {
   return (
     <div className="flex h-svh items-center justify-center">
-      <SettingsDialog />
+      <Editor height="90vh" defaultLanguage="typescript" />
     </div>
   );
 }

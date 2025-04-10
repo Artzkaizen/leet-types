@@ -117,6 +117,13 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* GitHub Markdown styles override */
+@media (prefers-color-scheme: dark) {
+  .markdown-body {
+    --bgColor-default: transparent !important;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -124,10 +131,28 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Dockview styles override */
   .dv-tab {
+    height: 28px !important;
     border-radius: 0.25rem;
     &:hover {
       opacity: 0.5;
+    }
+  }
+  .dockview-theme-vs {
+    --dv-tabs-and-actions-container-height: 32px !important;
+  }
+  .dockview-theme-vs .dv-tabs-and-actions-container {
+    padding: 4px 6px !important;
+  }
+  .dv-scrollable > .dv-tabs-container {
+    gap: 4px !important;
+  }
+
+  .dockview-theme-vs {
+    .tabs-and-actions-container {
+      padding: 8px !important;
     }
   }
   .dv-groupview {
@@ -165,5 +190,12 @@
 
   .dv-split-view-container.dv-vertical .dv-sash.dv-enabled::before {
     transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .dv-tabs-container.dv-horizontal .dv-tab:not(:first-child):before {
+    display: none !important;
+  }
+  .dv-tab.dv-active-tab::after {
+    opacity: 0 !important;
   }
 }
