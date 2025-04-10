@@ -2,20 +2,7 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import redis from "@/server/db/redis";
 import { TRPCError } from "@trpc/server";
-
-interface GithubContent {
-  name: string;
-  path: string;
-  content?: string;
-  type: string;
-}
-
-interface Problem {
-  id: string;
-  difficulty: string;
-  name: string;
-  path: string;
-}
+import type { GithubContent, Problem } from "@/types";
 
 const ONE_DAY = 60 * 60 * 24;
 
@@ -26,6 +13,7 @@ export const problemRouter = createTRPCRouter({
       const cachedProblems = await redis.get<Problem[]>(
         "type-challenges:problems",
       );
+
       if (cachedProblems) return cachedProblems;
 
       const owner = "type-challenges";

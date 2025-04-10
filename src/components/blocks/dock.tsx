@@ -13,7 +13,9 @@ import {
 import Editor from "./editor";
 
 import { usePathname, useRouter } from "next/navigation";
+import { useQueryState } from "nuqs";
 import { useEffect, useRef } from "react";
+import { z } from "zod";
 import LangSettings from "./lang-settings";
 
 const PanelWrapper = (props: React.PropsWithChildren) => {
@@ -187,6 +189,9 @@ const headerComponents = {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const paramsRef = useProblemQueryParams();
+
     return (
       <DockviewDefaultTab
         hideClose
@@ -194,10 +199,26 @@ const headerComponents = {
         onClick={() =>
           (props.params.title === "description" ||
             props.params.title === "solutions") &&
-          router.push(`/playground/${props.params.title}`)
+          router.push(
+            `/playground/${props.params.title}${paramsRef.current ? `?problem=${paramsRef.current}` : ""}`,
+          )
         }
         {...props}
       />
     );
   },
+};
+
+//  I dont like this pattern, quite unecessary imo, but i have to keep the state of the query params somehow
+const useProblemQueryParams = () => {
+  const [selectedProblem] = useQueryState("problem", z.string().optional());
+  const paramsRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (selectedProblem) {
+      paramsRef.current = selectedProblem;
+    }
+  }, [selectedProblem]);
+
+  return paramsRef;
 };

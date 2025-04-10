@@ -3,7 +3,7 @@
 import MarkdownRenderer from "@/components/blocks/markdown-renderer";
 import { api } from "@/trpc/react";
 import { useQueryState } from "nuqs";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { z } from "zod";
 
 export default function PlaygroundDescription() {
@@ -32,5 +32,22 @@ export default function PlaygroundDescription() {
     );
   }
 
-  return <MarkdownRenderer markdown={problemContent.data?.content ?? ""} />;
+  if (problemContent.isLoading || problems.isLoading) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-[#007acc]"></div>
+          <p className="text-sm text-gray-500">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MarkdownRenderer markdown={problemContent.data?.content ?? ""} />
+      </Suspense>
+    </>
+  );
 }
